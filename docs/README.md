@@ -9,14 +9,20 @@ for other BioCro module libraries.
 By default, the code here will not compile and does not define a functional R
 package. Instead, the following steps should be taken to initialize a working R
 packge:
-1. Make a fork of this repository.
-2. Obtain a local copy. This repository (and your newly-created fork) contains a
-   git submodule, so the "Download ZIP" option from the GutHub website will not
-   work properly. Instead, the easiest way to get a local copy is to install
-   GitHub Desktop and use the "Open with GitHub Desktop" option from the GitHub
-   website. Alternatively, if you are familiar with command-line git, you can
-   clone the repository as usual and then use `git submodule update --init` to
-   get the submodule code.
+1. Make a fork of this repository.  The default name supplied by
+   GitHub will be _skelBML_, but you should choose a name
+   corresponding to the name of your new module library (see step 3).
+2. Obtain a local copy. The easiest way to get a local copy is to
+   install GitHub Desktop and use the "Open with GitHub Desktop"
+   option in the "Code" dropdown on the GitHub repository page for the
+   fork you created in step 1.
+
+   Alternatively, clone your fork of the repository using Git on the
+   command line in the usual fashion by running `git clone <repository
+   URL>` where `<repository URL>` is the URL for your fork of skelBML.
+   This repository contains a Git submodule, so you will need to take
+   the additional step of running `git submodule update --init` to
+   obtain it.
 3. Run the startup script, which can be accomplished using either of two
    methods:
    1. Open an R session, set the working directory to `script`, and type
@@ -24,10 +30,11 @@ packge:
    2. From a terminal running in the `script` directory, type
       `Rscript module_library_setup.R`.
 
-   In either case, you will be prompted for a module library name, which should
-   be 16 or fewer characters long and not contain any underscores; ideally this
-   would be the name of the new forked repository. This script will generate
-   several files that are required to complete the package.
+   In either case, you will be prompted for a module library name,
+   which should be 16 or fewer characters long and not contain any
+   underscores; ideally this would match the name of the newly-forked
+   repository. This script will generate several files that are
+   required to complete the package.
 5. To confirm that everything worked, try building and checking the new
    package with `R CMD build` and `R CMD check`.
 6. Commit the changed files to your new repository.
