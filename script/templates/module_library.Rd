@@ -12,7 +12,7 @@
   essential functions required to interact with the modules in this library. For
   more information, see \code{\link[BioCro]{modules}},
   \code{\link[BioCro]{run_biocro}}, and the BioCro framework R package
-  \href{https://github.com/ebimodeling/biocro}{repository}.
+  \href{https://github.com/biocro/biocro}{repository}.
 }
 
 \details{
