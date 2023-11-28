@@ -20,6 +20,9 @@ for the next release.
 
 - Updated some links in the package documentation to point to the new stable
   BioCro R package repository location
+- Any module libraries that were based on earlier versions of `skelBML` should
+  run `script/module_library_setup.R` when updating to version 2.1.1 to help
+  remove any outdated links in their own documentation.
 
 # skelBML VERSION 2.1.0 (2023-06-15)
 
