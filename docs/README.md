@@ -85,12 +85,11 @@ using the following functions from the `usethis` R package:
   that describes a data set or a long-form vignette, it might be helpful to use
   `pkgdown` to build an automatically-updated website for your package. This
   will make your documentation more accessible to current or potential users.
-  For an example, see the
-  [BioCro pkgdown website](https://ebimodeling.github.io/biocro-documentation/docs/index.html).
-  A `pkgdown` website workflow can be initialized by calling
-  `usethis::use_pkgdown_github_pages()` from an R session running in the main
-  directory of your package repository. This would be most useful for a public
-  module library repository.
+  For an example, see the [public BioCro Documentation
+  website](https://biocro.github.io). A `pkgdown` website workflow can be
+  initialized by calling `usethis::use_pkgdown_github_pages()` from an R session
+  running in the main directory of your package repository. This would be most
+  useful for a public module library repository.
 - If you want to make sure that your package tests pass on multiple operating
   systems, it might be helpful to automatically run `R CMD check` on development
   branches before merging them into your main branch. Such a workflow can be
@@ -160,16 +159,15 @@ branch.
 
 ### Making contributions
 
-Please see the
-[contribution guidelines](https://github.com/ebimodeling/biocro/blob/main/developer_documentation/contribution_guidelines.md)
-before submitting changes.
+Please see the contribution guidelines before submitting changes.
+These may be found in Chapter One of the _Developer's Manual_ on the
+[public BioCro Documentation web site](https://biocro.github.io).
 
 ### Software Documentation
 
-See the
-[BioCro Documentation website](https://ebimodeling.github.io/biocro-documentation/),
-which includes documentation for the C++ framework, the BioCro R package, and
-the standard module library.
+See the [public BioCro Documentation web
+site](https://biocro.github.io), which includes documentation for the C++
+framework, the BioCro R package, and the standard module library.
 
 ### License
 

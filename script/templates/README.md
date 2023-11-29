@@ -54,7 +54,7 @@ module_info('%1$s:example_module')
 evaluate_module('%1$s:example_module', list(A = 1, B = 2))
 ```
 For more information about using BioCro modules in R, please see the
-[BioCro framework R package](https://github.com/ebimodeling/biocro).
+[BioCro framework R package](https://github.com/biocro/biocro).
 
 ### Source
 
