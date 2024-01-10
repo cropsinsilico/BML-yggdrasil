@@ -133,9 +133,7 @@ the following steps:
    git merge upstream/main
    ```
    You may need to address one or more merge conflicts at this point.
-4. Check `NEWS_skeleton.md` to see if the new version of the skeleton module
-   library requires you to rerun the setup script; if it does, then take the
-   following steps:
+4. Complete the update as follows:
    1. Rerun the setup script, running it as described above.
    2. Any files that would be changed by the script will be backed up; for
       example, if the script would modify
