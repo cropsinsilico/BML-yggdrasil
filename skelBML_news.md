@@ -16,6 +16,10 @@ Subsequent commits will then include a new "UNRELEASED" section in preparation
 for the next release.
 -->
 
+# skelBML VERSION 2.1.2
+
+- The C++ framework has been updated to v1.1.3
+
 # skelBML VERSION 2.1.1
 
 - Updated some links in the package documentation to point to the new stable
