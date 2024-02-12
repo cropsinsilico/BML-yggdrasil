@@ -25,6 +25,10 @@
 ^src/framework/.git$
 # Files from the `framework` submodule
 
+^inc/.editorconfig$
+^inc/.git$
+# Files from the `inc` submodule
+
 ^vignettes/[^/]*\.pdf$
 ^vignettes/figure$
 # Only exclude PDFs in the vignettes directory itself, not those in
