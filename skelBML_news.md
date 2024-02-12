@@ -16,6 +16,11 @@ Subsequent commits will then include a new "UNRELEASED" section in preparation
 for the next release.
 -->
 
+# skelBML VERSION 2.1.3
+
+- The boost library is now included as a git submodule, and has been updated to
+  address a few compiler warnings
+
 # skelBML VERSION 2.1.2
 
 - The C++ framework has been updated to v1.1.3
