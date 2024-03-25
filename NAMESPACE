@@ -1,0 +1,1 @@
+useDynLib(BMLePhoto, .registration = TRUE)
