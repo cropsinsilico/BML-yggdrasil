@@ -1,15 +1,11 @@
-boost_path  := /Users/yufeng/miniconda3/envs/ephoto/include
-sundial_path:= /Users/yufeng/miniconda3/envs/ephoto/
-ephoto_path := /Users/yufeng/Desktop/UIUC/Research/Github/BioCro-ePhotosynthesis-v2/models/ePhotosynthesis_C/
-#
-PKG_CPPFLAGS += -I$(sundial_path)/include -I$(ephoto_path)/include -I$(boost_path)
+#YH: you need to define the path named "ephoto_path" to your ephoto's main folder
+#in your system environment
+#otherwise, you'd have to hard-code it here
+PKG_CPPFLAGS += -I$(ephoto_path)/include -I$(CONDA_PREFIX)/include
 PKG_CPPFLAGS += -DR_NO_REMAP -O3 -g -Wall -ggdb3
 
-#Yufeng: This seems not working on BioCluster
-#I still need to add the $(ephoto_path)/build to LD_LIBRARY_PATH! 
-#Otherwise R cannot link it!
-PKG_LIBS += -L$(sundial_path)/lib
-PKG_LIBS += -L$(ephoto_path)/build -lEPhotosynthesis
+#YH: Both PKG_LIBS and the system environment need the ephoto's library path 
+PKG_LIBS  += -L$(ephoto_path)/build -lEPhotosynthesis
 
 SOURCES = $(wildcard *.cpp module_library/*.cpp framework/*.cpp framework/ode_solver_library/*.cpp framework/utils/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
