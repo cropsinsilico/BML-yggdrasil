@@ -5,7 +5,7 @@
 #include "../framework/module.h"
 #include "../framework/constants.h"  // for molar_mass_of_water, molar_mass_of_glucose
 
-namespace standardBML
+namespace BMLePhoto 
 {
 /**
  * @class multilayer_canopy_integrator
@@ -260,5 +260,5 @@ void ten_layer_canopy_integrator::do_operation() const
     multilayer_canopy_integrator::run();
 }
 
-}  // namespace standardBML
+}  // namespace BMLePhoto
 #endif

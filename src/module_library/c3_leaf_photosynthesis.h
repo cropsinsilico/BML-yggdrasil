@@ -4,7 +4,7 @@
 #include "../framework/state_map.h"
 #include "../framework/module.h"
 
-namespace standardBML
+namespace BMLePhoto
 {
 /**
  * @class c3_leaf_photosynthesis
@@ -108,5 +108,5 @@ class c3_leaf_photosynthesis : public direct_module
     void do_operation() const;
 };
 
-}  // namespace standardBML
+}  // namespace BMLePhoto
 #endif

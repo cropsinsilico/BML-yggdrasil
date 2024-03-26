@@ -6,7 +6,7 @@
 #include "multilayer_canopy_properties.h"
 #include "c3_leaf_photosynthesis.h"
 
-namespace standardBML
+namespace BMLePhoto 
 {
 using ten_layer_c3_canopy_parent =
     multilayer_canopy_photosynthesis<
@@ -56,5 +56,5 @@ class ten_layer_c3_canopy : public ten_layer_c3_canopy_parent
     void do_operation() const;
 };
 
-}  // namespace standardBML
+}  // namespace BMLePhoto 
 #endif

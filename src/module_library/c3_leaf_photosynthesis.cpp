@@ -2,7 +2,7 @@
 #include "c3photo.hpp"  // for c3photoC
 #include "BioCro.h"     // for c3EvapoTrans
 
-using standardBML::c3_leaf_photosynthesis;
+using BMLePhoto::c3_leaf_photosynthesis;
 
 string_vector c3_leaf_photosynthesis::get_inputs()
 {

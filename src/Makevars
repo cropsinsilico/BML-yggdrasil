@@ -1,4 +1,15 @@
-PKG_CPPFLAGS+=-I../inc -DR_NO_REMAP
+boost_path  := /Users/yufeng/miniconda3/envs/ephoto/include
+sundial_path:= /Users/yufeng/miniconda3/envs/ephoto/
+ephoto_path := /Users/yufeng/Desktop/UIUC/Research/Github/BioCro-ePhotosynthesis-v2/models/ePhotosynthesis_C/
+#
+PKG_CPPFLAGS += -I$(sundial_path)/include -I$(ephoto_path)/include -I$(boost_path)
+PKG_CPPFLAGS += -DR_NO_REMAP -O3 -g -Wall -ggdb3
+
+#Yufeng: This seems not working on BioCluster
+#I still need to add the $(ephoto_path)/build to LD_LIBRARY_PATH! 
+#Otherwise R cannot link it!
+PKG_LIBS += -L$(sundial_path)/lib
+PKG_LIBS += -L$(ephoto_path)/build -lEPhotosynthesis
 
 SOURCES = $(wildcard *.cpp module_library/*.cpp framework/*.cpp framework/ode_solver_library/*.cpp framework/utils/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
@@ -41,7 +52,7 @@ OUTPUT_OPTION = -o $@
 COMPILE.cpp = $(CXX) $(DEPFLAGS) $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -c
 
 $(OBJECTS) : %.o : %.cpp $(DEPDIR)/%.d | $(DEPSUBDIRS)
-	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
+	$(COMPILE.cpp) $< $(OUTPUT_OPTION)
 
 $(DEPSUBDIRS):
 	@mkdir -p $@
