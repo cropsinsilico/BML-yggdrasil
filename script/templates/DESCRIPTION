@@ -4,7 +4,12 @@ Title: YOUR TITLE HERE
 Description: YOUR DESCRIPTION HERE.
 Authors@R: c(
     person('Example', 'McAuthor', role = c('cre', 'aut'),
-          email = 'example@illinois.edu')
+          email = 'example@illinois.edu'),
+    person('%1$s authors', role = 'cph'),
+    person('BioCro authors', role = 'cph',
+           comment = 'Copyright holder of included BioCro C++ framework'),
+    person('Boost Organization', role = 'cph',
+           comment = 'Copyright holder of included Boost library')
     )
 Depends: R (>= 3.6.0)
 Imports:
