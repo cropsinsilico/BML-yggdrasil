@@ -1,4 +1,5 @@
 template_file          destination_path
+CITATION               inst/CITATION
 DESCRIPTION            DESCRIPTION
 example_module.h       src/module_library/example_module.h
 init.cpp               src/init.cpp
