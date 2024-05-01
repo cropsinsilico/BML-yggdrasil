@@ -1,0 +1,11 @@
+citHeader(
+    'When referencing the %1$s R package in a scientific publication, ',
+    'please cite the package itself or otherwise specify its version number.'
+)
+
+citation(auto = meta)
+
+citFooter(
+    'Because %1$s is a BioCro module library, please also reference the ',
+    'BioCro framework. Type citation("BioCro") for more details.'
+)

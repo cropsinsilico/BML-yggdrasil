@@ -25,8 +25,8 @@
 ^src/framework/.git$
 # Files from the `framework` submodule
 
-^inc/.editorconfig$
-^inc/.git$
+^src/inc/.editorconfig$
+^src/inc/.git$
 # Files from the `inc` submodule
 
 ^vignettes/[^/]*\.pdf$

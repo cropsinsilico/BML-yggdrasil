@@ -16,6 +16,15 @@ Subsequent commits will then include a new "UNRELEASED" section in preparation
 for the next release.
 -->
 
+# skelBML VERSION 2.1.4
+
+- Several changes were made to better comply with CRAN policies and to better
+  match the BioCro framework R package:
+  - The included boost library was moved to `src/inc` from `inc`
+  - Copyright holders of included libraries were added to the description
+  - Citation guidelines were added
+  - The minimum supported version of R was changed to 3.6.0
+
 # skelBML VERSION 2.1.3
 
 - The boost library is now included as a git submodule, and has been updated to
