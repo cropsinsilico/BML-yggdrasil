@@ -43,6 +43,7 @@ string_vector c3_leaf_photosynthesis::get_outputs()
         "Ci",                // micromole / mol
         "Gs",                // mmol / m^2 / s
         "iterTimes",         // 
+        "penalty",         // 
         "TransR",            // mmol / m^2 / s
         "EPenman",           // mmol / m^2 / s
         "EPriestly",         // mmol / m^2 / s
@@ -89,6 +90,7 @@ void c3_leaf_photosynthesis::do_operation() const
     update(Ci_op, photo.Ci);
     update(Gs_op, photo.Gs);
     update(iterTimes_op, photo.iterTimes);
+    update(penalty_op, photo.penalty);
     update(TransR_op, et.TransR);
     update(EPenman_op, et.EPenman);
     update(EPriestly_op, et.EPriestly);

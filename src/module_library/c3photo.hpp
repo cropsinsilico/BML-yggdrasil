@@ -9,6 +9,7 @@ struct c3_str {
     double Ci;
     double GrossAssim;
     double iterTimes;
+    double penalty;
 };
 
 struct c3_str c3photoC(
@@ -55,7 +56,12 @@ struct c3_str c3photoC_FvCB(
 double solc(double LeafT);
 double solo(double LeafT);
 
-double assim_ephoto(double LeafT,double PAR, double Ci,double enzyme_sf);
+struct ephoto_Result {
+    double A;
+    double penalty;
+};
+ephoto_Result assim_ephoto(double LeafT,double PAR, double Ci,double enzyme_sf);
+
 void readFile1(const std::string &filename, std::map<std::string,std::string> &mapper);
 void readFile2(const std::string &filename, std::map<std::string, double> &mapper); 
 

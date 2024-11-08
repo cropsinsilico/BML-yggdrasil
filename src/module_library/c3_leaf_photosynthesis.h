@@ -53,6 +53,7 @@ class c3_leaf_photosynthesis : public direct_module
           Ci_op(get_op(output_quantities, "Ci")),
           Gs_op(get_op(output_quantities, "Gs")),
           iterTimes_op(get_op(output_quantities, "iterTimes")),
+          penalty_op(get_op(output_quantities, "penalty")),
           TransR_op(get_op(output_quantities, "TransR")),
           EPenman_op(get_op(output_quantities, "EPenman")),
           EPriestly_op(get_op(output_quantities, "EPriestly")),
@@ -98,6 +99,7 @@ class c3_leaf_photosynthesis : public direct_module
     double* Ci_op;
     double* Gs_op;
     double* iterTimes_op;
+    double* penalty_op;
     double* TransR_op;
     double* EPenman_op;
     double* EPriestly_op;

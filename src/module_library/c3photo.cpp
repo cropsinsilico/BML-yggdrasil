@@ -72,6 +72,7 @@ struct c3_str c3photoC(
     double const Tol = 0.01;             // micromol / m^2 / s
     int iterCounter = 0;
     int max_iter = 10;
+    double penalty = 0.0;
 
     // Run iteration loop
     while (iterCounter < max_iter) {
@@ -79,7 +80,9 @@ struct c3_str c3photoC(
         Ci = (Ci_pa / AP) * 1e6;                  // micromol / mol
 
         //call ephotosynthesis
-        double co2_assim_ephoto = assim_ephoto(Tleaf,Qp,Ci,enzyme_sf);
+        ephoto_Result result    = assim_ephoto(Tleaf,Qp,Ci,enzyme_sf);
+        double co2_assim_ephoto = result.A; 
+        penalty          = result.penalty; 
         //ephoto returns the Gross A, which should not be negative!
         if (co2_assim_ephoto < 0) co2_assim_ephoto = 0 ;
         //now we overwrite the FvCB's An, make sure to minus the Rd!
@@ -134,12 +137,15 @@ struct c3_str c3photoC(
     result.Ci = Ci;                                  // micromol / mol
     result.GrossAssim = co2_assimilation_rate + Rd;  // micromol / m^2 / s
     result.iterTimes = double(iterCounter);
+    result.penalty   = penalty;
     return result;
 }
 
-double assim_ephoto(double LeafT, double PAR, double Ci,double enzyme_sf)
+ephoto_Result assim_ephoto(double LeafT, double PAR, double Ci,double enzyme_sf)
 {
-        bool record = false;
+//enzyme_sf is no longer used. Kept as dummy variable for now
+        bool record    = true;//turn this on to calculate penalties
+        bool runBioCro = true;//turn this on to NOT substract the penalties from A
         double stoptime=5000.0, begintime=0.0, stepsize=0.5;
         int  maxSubSteps=3000;
 //        double abstol = 9.9e-6, reltol = 1e-4;
@@ -157,22 +163,19 @@ double assim_ephoto(double LeafT, double PAR, double Ci,double enzyme_sf)
 
         readFile2(enzymeFile, theVars->EnzymeAct);
 
-       // theVars->TestCa = static_cast<double>(stof(inputs.at("CO2"), nullptr));
-       // theVars->TestLi = static_cast<double>(stof(inputs.at("PAR"), nullptr));
         theVars->CO2_in = Ci;  //get value from BioCro 
         theVars->TestLi = PAR; //get value from BioCro 
-//        theVars->TestSucPath = stoi(inputs.at("SucPath"), nullptr);
-       if (stoi(inputs.at("SucPath"), nullptr) > 0)
+        if (stoi(inputs.at("SucPath"), nullptr) > 0)
             CM::setTestSucPath(true);
         theVars->TestATPCost = stoi(inputs.at("ATPCost"), nullptr);
         theVars->record = record;
+        theVars->runBioCro = runBioCro;
         theVars->useC3 = true;
         theVars->RUBISCOMETHOD = 2;
-//        theVars->RUBISCOTOTAL = 3;
 	PR::setRUBISCOTOTAL(3);
 //this is the scaling factor for some enzymes. check EPS_Drive.cpp to see
 //which enzymes are being scaled
-        theVars->sensitivity_sf = enzyme_sf;
+//        theVars->sensitivity_sf = enzyme_sf;
 
         Driver *maindriver;
        
@@ -191,8 +194,11 @@ double assim_ephoto(double LeafT, double PAR, double Ci,double enzyme_sf)
            delete theVars;
        }   
        delete maindriver;
-
-       return(ResultRate[0]);
+       
+       ephoto_Result result; 
+       result.A       = ResultRate[0];
+       result.penalty = ResultRate[3];
+       return result;
 }
 
 void readFile1(const std::string &filename, std::map<std::string, std::string> &mapper) {
