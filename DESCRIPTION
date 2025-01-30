@@ -1,0 +1,21 @@
+Package: yggdrasilBML
+Version: 1.0.0
+Title: Yggdrasil BioCro Module Libraries
+Description: Yggdrasil connected external modules
+Authors@R: c(
+    person('Meagan', 'Lang', role = c('cre', 'aut'),
+          email = 'langmm@illinois.edu')
+    )
+Depends: R (>= 3.5.0)
+Imports:
+    stats
+Suggests:
+    BioCro (>= 3.0.0),
+    testthat,
+    knitr,
+    lattice
+VignetteBuilder: knitr
+SystemRequirements: C++11, GNU make
+License: MIT + file LICENSE
+LazyData: true
+ByteCompile: TRUE
