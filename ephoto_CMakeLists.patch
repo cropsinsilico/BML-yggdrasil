@@ -1,0 +1,22 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 4022d62..fb161eb 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -285,7 +285,7 @@ if(WIN32)
+ endif()
+ 
+ target_link_libraries(
+-    EPhotosynthesis PUBLIC ${Boost_LIBRARIES} ${SUNDIALS_LIBRARIES}
++    EPhotosynthesis ${Boost_LIBRARIES} ${SUNDIALS_LIBRARIES}
+ )
+ target_include_directories(
+     EPhotosynthesis PUBLIC ${Boost_INCLUDE_DIRS} ${SUNDIALS_INCLUDE_DIRS}
+@@ -293,7 +293,7 @@ target_include_directories(
+     $<INSTALL_INTERFACE:include/ePhotosynthesis>
+ )
+ 
+-target_link_libraries(ePhoto PRIVATE EPhotosynthesis)
++target_link_libraries(ePhoto EPhotosynthesis)
+ 
+ 
+ ###########################

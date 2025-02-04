@@ -1,5 +1,6 @@
 ## yggdrasilBML
-PUT AN OVERVIEW OF THE MODULE LIBRARY HERE
+
+This is a collection of BioCro modules that call external models using yggdrasil. The models are included in this repository as git submodules under the 'models' directory, but they can be cloned independently if the appropriate paths are updated in the yaml files.
 
 ### Installation
 
@@ -11,8 +12,48 @@ PUT AN OVERVIEW OF THE MODULE LIBRARY HERE
 - On Linux, gcc and g++ version 4.9.3 or greater (consult documentation for your
   distribution for installation instructions).
 - On MacOS, Xcode.
+- yggdrasil
 
-#### Installation steps
+#### Installation steps (yggdrasil integration)
+
+0. Install mamba (micromamba works well)
+
+1. Install yggdrasil & model dependencies
+
+To create a conda environment named 'ygg' with yggdrasil & the model dependencies installed from conda-forge using mamba:
+
+```
+mamba env create -n ygg -f environment.yml
+```
+
+The yggdrasil repository contains utilities for setting up a yggdrasil conda environment with yggdrasil installed from source in development mode, but then the additional dependencies must also be installed:
+
+```
+python utils/setup_test_env.py devenv mamba 3.9 --env-name ygg -y
+mamba install boost>=1.36.0 sundials>=5.7.0
+```
+
+2. Install the R module
+
+For ease of use, I have provided an installation script `install.sh` that assumes yggdrasil is already installed within a mamba environment from conda-forge. Run it from within the top directory of this repository.
+
+#### Yggdrasil integrations
+
+The yaml files describing the example integrations can be found in the 'yamls' directory. They are:
+
+- biocro.yml: For running the BioCro Soybean model in isolation with the built in photosynthesis model.
+- ePhotosynthesis.yaml: For running the ePhotosynthesis model as part of integrations with BioCro.
+- biocro_ephoto.yml: For running an integration of BioCro & the ePhotosynthesis model where ePhotosynthesis takes the place of the built-in BioCro photosynthesis model.
+
+The above version all assumes that yggdrasil is installed from the most recent tagged release (either from source, conda-forge, or PyPI). I have also prepared versions that are compatible with my current development branch of yggdrasil ('topic/cache'). They begin with the 'dev_*' prefix.
+
+#### Running a Yggdrasil integration
+
+```
+yggrun biocro_ephoto.yml
+```
+
+#### Installation steps (R module)
 
 First, obtain a local copy of this repository, which can be accomplished using
 either of two methods:
@@ -31,8 +72,7 @@ assume that the source files are in a directory named  'yggdrasilBML'.
 
 - From the command line
 ```
-cd path_to_unzipped_directory
-R CMD INSTALL yggdrasilBML
+R CMD INSTALL .
 ```
 
 - Or from within R
@@ -41,27 +81,16 @@ setwd('path_to_unzipped_directory')
 install.packages('yggdrasilBML', repos=NULL, type='SOURCE')
 ```
 
-- Or from the command line w/o unzipping
-```
-R CMD INSTALL yggdrasilBML_1.0.0.tar.gz
-```
-
-- Or from within R w/o unzipping
-```
-install.packages('yggdrasilBML_1.0.0.tar.gz', repos=NULL, type='SOURCE')
-```
-
-### An example
+### An example (R module)
 
 The following code will print a list of all modules available in this library,
-return information about one of them (`example_module`), and then run that
+return information about one of them (`yggdrasilBML:ephotosynthesis`), and then run that
 module:
 ```
 library(BioCro)
 library(yggdrasilBML)
 get_all_modules('yggdrasilBML')
-module_info('yggdrasilBML:ephotosynthesis_c')
-evaluate_module('yggdrasilBML:ephotosynthesis_c', list(A = 1, B = 2))
+module_info('yggdrasilBML:ephotosynthesis')
 ```
 For more information about using BioCro modules in R, please see the
 [BioCro framework R package](https://github.com/biocro/biocro).

@@ -17,6 +17,8 @@ BioCroWrapper <- function(param) {
   if ("year" %in% param_names) {
     year = param[['year']]
   }
+  enzyme_sf = 1.0
+  water_stress_approach = 1
   
   if (crop == 'soybean') {
     initial_values <- soybean$initial_values
@@ -28,12 +30,19 @@ BioCroWrapper <- function(param) {
   } else {
     stop('Invalid crop name \"' + name + '\"')
   }
+  parameters$enzyme_sf = enzyme_sf
+  parameters$water_stress_approach = water_stress_approach
 
-  print(length(direct_modules))
   if (with_ephoto) {
-    direct_modules[[15]] = "yggdrasilBML:ephotosynthesis"
+    # Replace BioCro ten layer canopy modules
+    direct_modules[[10]] = "yggdrasilBML:ten_layer_canopy_properties"
+    direct_modules[[11]] = "yggdrasilBML:ten_layer_c3_canopy"
+    direct_modules[[12]] = "yggdrasilBML:ten_layer_canopy_integrator"
   }
-  print(length(direct_modules))
+  # print(names(weather))
+  # print(weather[1,])
+  # error('HERE')
+  weather = weather[1,]
 
   result <- run_biocro(
     initial_values,

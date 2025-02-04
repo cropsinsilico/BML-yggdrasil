@@ -1,0 +1,24 @@
+model:
+  name: ephotosynthesis
+  description: C++ port of the ePhotosynthesis Matlab model code
+  language: cmake
+  target_language: c++
+  args: [ePhoto, -d, 4, -a, ../models/ePhotosynthesis_C/InputATPCost.txt, -e, ../models/ePhotosynthesis_C/InputEvn.txt, -n, ../models/ePhotosynthesis_C/InputEnzyme.txt, -g, ../models/ePhotosynthesis_C/InputGRNC.txt]
+  target: ePhoto
+  sourcedir: ../models/ePhotosynthesis_C
+  preserve_cache: true
+  # overwrite: true
+  is_server:
+    input: param
+    output: output
+  # dependencies:
+  #   - package: "sundials>=5.7.0"
+  #   - package: "boost>=1.36.0"
+  inputs:
+    - name: param
+      datatype:
+        type: object
+  outputs:
+    - name: output
+      datatype:
+        type: object

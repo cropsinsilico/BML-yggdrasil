@@ -1,0 +1,39 @@
+include:
+  # - ./biocro.yml
+  - ./dev_ephoto.yml
+  
+models:
+  - name: BioCro
+    language: R
+    args: ../biocro_wrapper.R
+    function: BioCroWrapper
+    client_of: ephotosynthesis
+    env:
+      WITH_EPHOTO: TRUE
+    inputs:
+      - name: input
+        datatype:
+          type: array
+          items:
+            - type: object
+              properties:
+                crop:
+                  type: string
+                year:
+                  type: number
+        default_file:
+          name: ../Input/input_map.txt
+          filetype: map
+          transforms:
+            - transformtype: statement
+              statement: '[%x%]'
+    outputs:
+      - name: result
+        datatype:
+          type: array
+          items:
+            type: 1darray
+            subtype: float
+        default_file:
+          name: dev_result_ephoto.txt
+          filetype: pandas
