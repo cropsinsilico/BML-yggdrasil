@@ -9,8 +9,8 @@ yggcompile c cpp
 # 4. Install BioCro (will be done at runtime if not here)
 R CMD BATCH install.R
 # 5. Install yggdrasilBML wrapper modules
-yggcc .
-# R CMD INSTALL .
+R CMD INSTALL .
+# yggcc .  # This does not work on ubuntu w/ yggdrasil from conda-forge
 # For compat with yggdrasil on main which assumes no scope when
 #   wrapping CMakeLists.txt and linking target to yggdrasil library
 #   via target_include_directories. yggdrasil on param branch fixes this.
