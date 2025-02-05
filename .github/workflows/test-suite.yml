@@ -36,7 +36,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: yggdrasilBML
-          environment-file: environment.yml
+          environment-file: environment_no_r.yml
           auto-update-conda: true
           channels: conda-forge
           channel-priority: strict
@@ -67,6 +67,15 @@ jobs:
         if: matrix.os != 'windows-latest'
         run: |
           mamba install c-compiler cxx-compiler
+      - name: Install R (Windows)
+        uses: r-lib/actions/setup-r@v2
+        if: runner.os == 'windows-latest'
+        with:
+          r-version: '4.3.3'
+      - name: Install R (Unix)
+        if: runner.os != 'windows-latest'
+        run:
+          mamba install yggdrasil.r
 
       ###################################
       # Install yggdrasilBML

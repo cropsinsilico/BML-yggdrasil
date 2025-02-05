@@ -7,6 +7,8 @@ models:
     language: R
     args: ../biocro_wrapper.R
     function: BioCroWrapper
+    dependencies:
+      - package: BioCro
     client_of: ephotosynthesis
     env:
       WITH_EPHOTO: TRUE

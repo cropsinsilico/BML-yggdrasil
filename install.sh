@@ -6,10 +6,11 @@ mamba install -y zeromq==4.3.4
 yggconfig --osr-repository-path $(pwd)/models/OpenSimRoot
 # 3. Compile the yggdrasil C & C++ interfaces
 yggcompile c cpp
-# 4. Install BioCro
+# 4. Install BioCro (will be done at runtime if not here)
 R CMD BATCH install.R
 # 5. Install yggdrasilBML wrapper modules
-R CMD INSTALL .
+yggcc .
+# R CMD INSTALL .
 # For compat with yggdrasil on main which assumes no scope when
 #   wrapping CMakeLists.txt and linking target to yggdrasil library
 #   via target_include_directories. yggdrasil on param branch fixes this.

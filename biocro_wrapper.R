@@ -40,9 +40,9 @@ BioCroWrapper <- function(param) {
     direct_modules[[12]] = "yggdrasilBML:ten_layer_canopy_integrator"
   }
   # print(names(weather))
-  # print(weather[1,])
+  # print(weather[10,]['solar'])
   # error('HERE')
-  weather = weather[1,]
+  weather = weather[10,]
 
   result <- run_biocro(
     initial_values,

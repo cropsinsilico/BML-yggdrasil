@@ -3,6 +3,8 @@ models:
     language: R
     args: ../biocro_wrapper.R
     function: BioCroWrapper
+    dependencies:
+      - package: BioCro
     inputs:
       - name: input
         datatype:
