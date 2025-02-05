@@ -42,7 +42,7 @@ For ease of use, I have provided an installation script `install.sh` that assume
 The yaml files describing the example integrations can be found in the 'yamls' directory. They are:
 
 - biocro.yml: For running the BioCro Soybean model in isolation with the built in photosynthesis model.
-- ePhotosynthesis.yaml: For running the ePhotosynthesis model as part of integrations with BioCro.
+- ephoto.yml: For running the ePhotosynthesis model as part of integrations with BioCro.
 - biocro_ephoto.yml: For running an integration of BioCro & the ePhotosynthesis model where ePhotosynthesis takes the place of the built-in BioCro photosynthesis model.
 
 The above version all assumes that yggdrasil is installed from the most recent tagged release (either from source, conda-forge, or PyPI). I have also prepared versions that are compatible with my current development branch of yggdrasil ('topic/cache'). They begin with the 'dev_*' prefix.
