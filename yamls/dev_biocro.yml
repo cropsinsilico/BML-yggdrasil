@@ -1,0 +1,34 @@
+models:
+  - name: BioCro
+    language: R
+    args: ../biocro_wrapper.R
+    function: BioCroWrapper
+    dependencies:
+      - package: BioCro
+    inputs:
+      - name: input
+        datatype:
+          type: array
+          items:
+            - type: object
+              properties:
+                crop:
+                  type: string
+                year:
+                  type: number
+        default_file:
+          name: ../Input/input_map.txt
+          filetype: map
+          transforms:
+            - transformtype: statement
+              statement: '[%x%]'
+    outputs:
+      - name: result
+        datatype:
+          type: array
+          items:
+            type: 1darray
+            subtype: float
+        default_file:
+          name: ../Output/dev_result.txt
+          filetype: pandas

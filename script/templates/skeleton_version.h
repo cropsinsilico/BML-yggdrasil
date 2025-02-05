@@ -8,7 +8,7 @@
 
 namespace %1$s
 {
-static const std::string skeleton_version = "2.1.1";
+static const std::string skeleton_version = "2.1.3";
 }
 
 #endif

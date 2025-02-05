@@ -10,7 +10,7 @@
 #include "skeleton_version.h"
 
 using std::string;
-using BMLePhoto::skeleton_version;
+using yggdrasilBML::skeleton_version;
 
 extern "C" {
 /**

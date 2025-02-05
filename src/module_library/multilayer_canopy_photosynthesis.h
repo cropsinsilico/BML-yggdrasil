@@ -94,7 +94,7 @@ string_vector get_other_leaf_inputs()
 }
 }  // namespace MLCPnew
 
-namespace BMLePhoto
+namespace yggdrasilBML
 {
 /**
  * @class multilayer_canopy_photosynthesis
@@ -354,5 +354,5 @@ void multilayer_canopy_photosynthesis<canopy_module_type, leaf_module_type>::run
     }
 }
 
-}  // namespace BMLePhoto
+}  // namespace yggdrasilBML
 #endif

@@ -4,14 +4,14 @@
 #include "../framework/state_map.h"
 #include "multilayer_canopy_photosynthesis.h"
 #include "multilayer_canopy_properties.h"
-#include "c3_leaf_photosynthesis.h"
+#include "ephotosynthesis.h"
 
-namespace BMLePhoto 
+namespace yggdrasilBML 
 {
 using ten_layer_c3_canopy_parent =
     multilayer_canopy_photosynthesis<
         ten_layer_canopy_properties,
-        c3_leaf_photosynthesis>;
+        c3_ephotosynthesis>;
 
 /**
  * @class ten_layer_c3_canopy
@@ -56,5 +56,5 @@ class ten_layer_c3_canopy : public ten_layer_c3_canopy_parent
     void do_operation() const;
 };
 
-}  // namespace BMLePhoto 
+}  // namespace yggdrasilBML 
 #endif

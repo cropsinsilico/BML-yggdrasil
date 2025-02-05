@@ -2,8 +2,8 @@
 #include "BioCro.h"     // for sunML, RHprof, WINDprof
 #include "AuxBioCro.h"  // for LNprof
 
-using BMLePhoto::multilayer_canopy_properties;
-using BMLePhoto::ten_layer_canopy_properties;
+using yggdrasilBML::multilayer_canopy_properties;
+using yggdrasilBML::ten_layer_canopy_properties;
 
 /**
  * @brief Define all inputs required by the module

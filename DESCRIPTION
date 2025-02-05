@@ -1,10 +1,10 @@
-Package: BMLePhoto 
+Package: yggdrasilBML
 Version: 1.0.0
-Title: YOUR TITLE HERE
-Description: YOUR DESCRIPTION HERE.
+Title: Yggdrasil BioCro Module Libraries
+Description: Yggdrasil connected external modules
 Authors@R: c(
-    person('Example', 'McAuthor', role = c('cre', 'aut'),
-          email = 'example@illinois.edu')
+    person('Meagan', 'Lang', role = c('cre', 'aut'),
+          email = 'langmm@illinois.edu')
     )
 Depends: R (>= 3.5.0)
 Imports:

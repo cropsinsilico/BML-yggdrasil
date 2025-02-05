@@ -1,0 +1,2 @@
+crop	soybean
+year	2002

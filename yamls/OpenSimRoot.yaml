@@ -1,0 +1,15 @@
+model:
+  name: OpenSimRoot
+  description: 3D architectural plant model for root growth
+  language: osr
+  timesync:
+    - name: timesync
+      inputs:  [carbonAllocation2Roots, saturatedConductivity]
+      outputs: [saturatedWaterContent]
+  inputs: []
+  outputs: []
+  args:
+    - ./OpenSimRoot/InputFiles/runMaize.xml
+  copy_xml_to_osr: True
+  update_interval:
+    timesync: 0.1

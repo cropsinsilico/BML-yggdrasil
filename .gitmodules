@@ -2,3 +2,14 @@
 	path = src/framework
 	url = https://github.com/biocro/framework
 	branch = main
+[submodule "inc"]
+	path = inc
+	url = https://github.com/biocro/inc
+	branch = main
+[submodule "models/ePhotosynthesis_C"]
+	path = models/ePhotosynthesis_C
+	url = https://github.com/cropsinsilico/ePhotosynthesis_C
+	branch = param
+[submodule "models/OpenSimRoot"]
+	path = models/OpenSimRoot
+	url = https://gitlab.com/langmm/OpenSimRoot

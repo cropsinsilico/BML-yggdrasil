@@ -12,7 +12,13 @@ struct c3_str {
     double penalty;
 };
 
+#ifdef WITH_YGGDRASIL
+
+// Forward declaration
+class YggRpcClient;
+
 struct c3_str c3photoC(
+    YggRpcClient& rpc,
     double const Qp,
     double const Tleaf,
     double const RH,
@@ -32,6 +38,8 @@ struct c3_str c3photoC(
     double const electrons_per_carboxylation,
     double const electrons_per_oxygenation,
     double const enzyme_sf);
+
+#endif // WITH_YGGDRASIL
 
 struct c3_str c3photoC_FvCB(
     double const Qp,
@@ -55,14 +63,5 @@ struct c3_str c3photoC_FvCB(
 
 double solc(double LeafT);
 double solo(double LeafT);
-
-struct ephoto_Result {
-    double A;
-    double penalty;
-};
-ephoto_Result assim_ephoto(double LeafT,double PAR, double Ci,double enzyme_sf);
-
-void readFile1(const std::string &filename, std::map<std::string,std::string> &mapper);
-void readFile2(const std::string &filename, std::map<std::string, double> &mapper); 
 
 #endif

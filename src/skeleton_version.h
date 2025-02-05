@@ -1,14 +1,14 @@
 // WARNING: This file was included in this package by the BioCro skeleton module
 // library and should not be manually edited.
 
-#ifndef BMLePhoto_SKELETON_VERSION_H
-#define BMLePhoto_SKELETON_VERSION_H
+#ifndef yggdrasilBML_SKELETON_VERSION_H
+#define yggdrasilBML_SKELETON_VERSION_H
 
 #include <string>
 
-namespace BMLePhoto
+namespace yggdrasilBML
 {
-static const std::string skeleton_version = "2.1.1";
+static const std::string skeleton_version = "2.1.3";
 }
 
 #endif

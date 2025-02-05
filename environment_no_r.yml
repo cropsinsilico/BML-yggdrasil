@@ -1,0 +1,15 @@
+name: yggdrasilBML
+channels:
+  - conda-forge
+dependencies:
+  - boost>=1.36.0
+  - cmake
+  - ipython
+  - python==3.10
+  - sundials>=5.7.0
+  - yggdrasil
+  - yggdrasil.c
+  # - yggdrasil.zmq
+  - numpy
+  - czmq
+  - zeromq==4.3.4

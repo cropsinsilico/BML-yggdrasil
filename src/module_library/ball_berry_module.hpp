@@ -5,7 +5,7 @@
 #include "../framework/state_map.h"
 #include "ball_berry.hpp"
 
-namespace BMLePhoto
+namespace yggdrasilBML
 {
 class ball_berry_module : public direct_module
 {
@@ -76,5 +76,5 @@ void ball_berry_module::do_operation() const
     update(leaf_stomatal_conductance_op, stomatal_conductance);
 }
 
-}  // namespace BMLePhoto
+}  // namespace yggdrasilBML
 #endif

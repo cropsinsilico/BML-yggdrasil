@@ -33,7 +33,7 @@ static const R_CallMethodDef callMethods[] = {
 
 // The name of this function must be `R_init_NAME`, where `NAME` must exactly
 // match the name of the R package.
-void attribute_visible R_init_BMLePhoto(DllInfo* info)
+void attribute_visible R_init_yggdrasilBML(DllInfo* info)
 {
     // We only use .Call in our R code, so we only need to register call methods
     R_registerRoutines(info, NULL, callMethods, NULL, NULL);

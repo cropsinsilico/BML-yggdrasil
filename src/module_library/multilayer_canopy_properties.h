@@ -4,7 +4,7 @@
 #include "../framework/state_map.h"
 #include "../framework/module.h"
 
-namespace BMLePhoto
+namespace yggdrasilBML
 {
 /**
  * @class multilayer_canopy_properties
@@ -185,5 +185,5 @@ class ten_layer_canopy_properties : public multilayer_canopy_properties
     void do_operation() const;
 };
 
-}  // namespace BMLePhoto
+}  // namespace yggdrasilBML
 #endif

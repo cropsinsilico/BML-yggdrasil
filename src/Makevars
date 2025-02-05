@@ -1,17 +1,8 @@
-# Get the current directory path of the Makevars
-CURRENT_DIR := $(CURDIR)
-PARENT_DIR  := $(shell dirname $(CURRENT_DIR))
-# Get the parent of the parent directory path
-PARENT_OF_PARENT_DIR := $(shell dirname $(PARENT_DIR))
-ephoto_path := $(PARENT_OF_PARENT_DIR)/ePhotosynthesis_C
+PKG_CPPFLAGS+=-I../inc -DR_NO_REMAP
 
-conda_path := $(shell conda env list | grep ephoto | awk '{print $$NF}')
-
-PKG_CPPFLAGS += -I$(ephoto_path)/include -I$(conda_path)/include
-PKG_CPPFLAGS += -DR_NO_REMAP -O3 -g -Wall -ggdb3
-
-#YH: Both PKG_LIBS and the system environment need the ephoto's library path 
-PKG_LIBS += -L$(ephoto_path)/build -lEPhotosynthesis
+#ML: Yggdrasil compilation/linking flags
+PKG_CPPFLAGS += $(shell yggccflags --cpp)
+PKG_LIBS += $(shell yggldflags --cpp)
 
 SOURCES = $(wildcard *.cpp module_library/*.cpp framework/*.cpp framework/ode_solver_library/*.cpp framework/utils/*.cpp)
 OBJECTS = $(SOURCES:.cpp=.o)
@@ -54,7 +45,7 @@ OUTPUT_OPTION = -o $@
 COMPILE.cpp = $(CXX) $(DEPFLAGS) $(ALL_CPPFLAGS) $(ALL_CXXFLAGS) -c
 
 $(OBJECTS) : %.o : %.cpp $(DEPDIR)/%.d | $(DEPSUBDIRS)
-	$(COMPILE.cpp) $< $(OUTPUT_OPTION)
+	$(COMPILE.cpp) $(OUTPUT_OPTION) $<
 
 $(DEPSUBDIRS):
 	@mkdir -p $@

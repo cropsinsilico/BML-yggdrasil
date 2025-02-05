@@ -13,7 +13,7 @@
 #include "R_module_library.h"
 
 using std::string;
-using library = BMLePhoto::module_library;
+using library = yggdrasilBML::module_library;
 
 extern "C" {
 
