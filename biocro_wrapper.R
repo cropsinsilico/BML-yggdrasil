@@ -4,9 +4,6 @@ if (with_ephoto) {
   library(yggdrasilBML)
 }
 
-# weather data includes 
-#   fields: "year","doy","hour","temp","rh","windspeed","precip","solar","tz","jday","daylength"
-
 BioCroWrapper <- function(param) {
   crop = 'soybean'
   year = '2002'
@@ -39,9 +36,6 @@ BioCroWrapper <- function(param) {
     direct_modules[[11]] = "yggdrasilBML:ten_layer_c3_canopy"
     direct_modules[[12]] = "yggdrasilBML:ten_layer_canopy_integrator"
   }
-  # print(names(weather))
-  # print(weather[10,]['solar'])
-  # error('HERE')
   weather = weather[10,]
 
   result <- run_biocro(
