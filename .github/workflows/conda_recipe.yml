@@ -1,0 +1,99 @@
+name: Test of conda recipe build
+'on':
+  push:
+    branches-ignore:
+     - gh-pages
+    tags:
+     - '*'
+  schedule:
+  - cron: 0 10 * * 1
+jobs:
+  build_conda_recipe:
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        shell: bash -el {0}
+    strategy:
+      matrix:
+        sundials-version: [latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
+      fail-fast: false
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      ###################################
+      # CONDA SETUP
+      ###################################
+      - name: Set up MSVC Compiler on windows
+        uses: ilammy/msvc-dev-cmd@v1
+        if: matrix.os == 'windows-latest'
+      - name: Set up miniconda test environment (W/O MPI)
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ""
+          auto-activate-base: true
+          auto-update-conda: true
+          channels: conda-forge
+          channel-priority: strict
+          miniforge-variant: Miniforge3
+          miniforge-version: latest
+          conda-remove-defaults: true
+      - name: Install conda-build
+        run: |
+          conda info
+          conda list
+          conda install conda-build py-lief=0.14 cmake numpy -y
+      - name: Check conda installation
+        run: |
+          conda info
+          conda list
+
+      ###################################
+      # Build & Install BioCro
+      ###################################
+      - name: Build BioCro conda recipe
+        run: |
+          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ recipes/r-biocro/
+      - name: Install BioCro from local conda recipe
+        run: |
+          conda install -c ./local_channel r-biocro
+          conda list
+
+      ###################################
+      # Build & Install ePhotosynthesis
+      ###################################
+      - name: Build ePhotosythesis conda recipe
+        run: |
+          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ models/ePhotosynthesis_C/recipe/
+      - name: Install BioCro from local conda recipe
+        run: |
+          conda install -c ./local_channel ePhotosynthesis
+          conda list
+
+      ###################################
+      # Build & Install yggdrasilBML
+      ###################################
+      - name: Build yggdrasilBML conda recipe
+        run: |
+          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-yggdrasilbml
+      - name: Install yggdrasilBML from local conda recipe
+        run: |
+          conda install -c ./local_channel r-yggdrasilbml
+          conda list
+
+      ###################################
+      # Test
+      ###################################
+      - name: Check installed packages
+        run: |
+          mamba list
+          ygginfo --verbose
+      - name: Test isolated BioCro
+        run: |
+          yggrun yamls/biocro.yml
+      - name: Test BioCro-ePhotosynthesis integration
+        run: |
+          yggrun yamls/biocro_ephoto.yml

@@ -1,0 +1,83 @@
+{% set version = '3.1.3' %}
+{% set posix = 'm2-' if win else '' %}
+
+package:
+  name: r-biocro
+  version: {{ version|replace("-", "_") }}
+
+source:
+  url:
+    - {{ cran_mirror }}/src/contrib/BioCro_{{ version }}.tar.gz
+    - {{ cran_mirror }}/src/contrib/Archive/BioCro/BioCro_{{ version }}.tar.gz
+  sha256: cc8d521c54f28807259bd22e1e82f03b50f75b22ce63200be4686363793618e4
+
+build:
+  number: 0
+  rpaths:
+    - lib/R/lib/
+    - lib/
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
+
+requirements:
+  build:
+    - {{ compiler('c') }}              # [not win]
+    - {{ compiler('m2w64_c') }}        # [win]
+    - {{ compiler('cxx') }}            # [not win]
+    - {{ compiler('m2w64_cxx') }}      # [win]
+    - {{ posix }}filesystem        # [win]
+    - {{ posix }}make
+    - {{ posix }}sed               # [win]
+    - {{ posix }}coreutils         # [win]
+    - {{ posix }}zip               # [win]
+    - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+  host:
+    - r-base
+  run:
+    - r-base
+
+test:
+  commands:
+    - $R -e "library('BioCro')"           # [not win]
+    - "\"%R%\" -e \"library('BioCro')\""  # [win]
+
+about:
+  home: https://github.com/biocro/biocro, https://biocro.github.io
+  license: MIT
+  summary: A cross-platform representation of models as sets of equations that facilitates modularity
+    in model building and allows users to harness modern techniques for numerical integration
+    and data visualization. Documentation is provided by several vignettes included
+    in this package; also see Lochocki et al. (2022) <doi:10.1093/insilicoplants/diac003>.
+  license_family: MIT
+  license_file:
+    - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
+    - LICENSE
+
+extra:
+  recipe-maintainers:
+    - langmm
+
+# Package: BioCro
+# Version: 3.1.3
+# Date: 2024-04-22
+# Title: Modular Crop Growth Simulations
+# Description: A cross-platform representation of models as sets of equations that facilitates modularity in model building and allows users to harness modern techniques for numerical integration and data visualization. Documentation is provided by several vignettes included in this package; also see Lochocki et al. (2022) <doi:10.1093/insilicoplants/diac003>.
+# Authors@R: c( person("Justin M.", "McGrath", role = c('cre', 'aut'), email = "jmcgrath@illinois.edu", comment = c(ORCID = "0000-0002-7025-3906")), person("Edward B.", "Lochocki", role = 'aut', comment = c(ORCID = "0000-0002-4912-9783")), person("Scott", "Rohde", role = 'aut', comment = c(ORCID = "0000-0001-9030-0936")), person("Deepak", "Jaiswal", role = 'aut', comment = c(ORCID = "0000-0002-4077-3919")), person("Megan L.", "Matthews", role = 'aut', comment = c(ORCID = "0000-0002-5513-9320")), person("Fernando E.", "Miguez", role = 'aut', comment = c(ORCID = "0000-0002-4627-8329")), person("Stephen P.", "Long", role = 'aut', comment = c(ORCID = "0000-0002-8501-7164")), person("Dan", "Wang", role = 'ctb'), person("David", "LeBauer", role = 'ctb', comment = c(ORCID = "0000-0001-7228-053X")), person("BioCro authors", role = "cph"), person("Boost Organization", role = "cph", comment = "Copyright holder of included Boost library") )
+# Depends: R (>= 3.6.0)
+# Imports: stats
+# Suggests: testthat (>= 3.2.0), knitr, rmarkdown, bookdown, lattice, deSolve
+# VignetteBuilder: knitr
+# SystemRequirements: C++11, GNU make
+# License: MIT + file LICENSE
+# LazyData: true
+# ByteCompile: TRUE
+# URL: https://github.com/biocro/biocro, https://biocro.github.io
+# Config/testthat/edition: 3
+# NeedsCompilation: yes
+# Packaged: 2024-04-29 16:32:57 UTC; Justin
+# Author: Justin M. McGrath [cre, aut] (<https://orcid.org/0000-0002-7025-3906>), Edward B. Lochocki [aut] (<https://orcid.org/0000-0002-4912-9783>), Scott Rohde [aut] (<https://orcid.org/0000-0001-9030-0936>), Deepak Jaiswal [aut] (<https://orcid.org/0000-0002-4077-3919>), Megan L. Matthews [aut] (<https://orcid.org/0000-0002-5513-9320>), Fernando E. Miguez [aut] (<https://orcid.org/0000-0002-4627-8329>), Stephen P. Long [aut] (<https://orcid.org/0000-0002-8501-7164>), Dan Wang [ctb], David LeBauer [ctb] (<https://orcid.org/0000-0001-7228-053X>), BioCro authors [cph], Boost Organization [cph] (Copyright holder of included Boost library)
+# Maintainer: Justin M. McGrath <jmcgrath@illinois.edu>
+# Repository: CRAN
+# Date/Publication: 2024-04-30 11:42:54 UTC
