@@ -30,11 +30,11 @@ requirements:
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
   host:
-    - r-base
+    - r-base >=3.6.0
     - ephotosynthesis
     - yggdrasil
   run:
-    - r-base
+    - r-base >=3.6.0
     - ephotosynthesis
     - r-biocro >=3.1.0
     - yggdrasil
