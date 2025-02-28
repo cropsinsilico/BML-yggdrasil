@@ -1,7 +1,9 @@
 library(BioCro)
-with_ephoto = (nchar(Sys.getenv("WITH_EPHOTO")) > 0)
-if (with_ephoto) {
+with_ephoto = Sys.getenv("WITH_EPHOTO")
+if (with_ephoto == "YGG") {
   library(yggdrasilBML)
+} elseif (with_ephoto == "C") {
+  library(BMLephoto)
 }
 
 BioCroWrapper <- function(param) {
@@ -30,11 +32,16 @@ BioCroWrapper <- function(param) {
   parameters$enzyme_sf = enzyme_sf
   parameters$water_stress_approach = water_stress_approach
 
-  if (with_ephoto) {
+  if (with_ephoto == "YGG") {
     # Replace BioCro ten layer canopy modules
     direct_modules[[10]] = "yggdrasilBML:ten_layer_canopy_properties"
     direct_modules[[11]] = "yggdrasilBML:ten_layer_c3_canopy"
     direct_modules[[12]] = "yggdrasilBML:ten_layer_canopy_integrator"
+  } elseif (with_ephoto == "C") {
+    # Replace BioCro ten layer canopy modules
+    direct_modules[[10]] = "BMLephoto:ten_layer_canopy_properties"
+    direct_modules[[11]] = "BMLephoto:ten_layer_c3_canopy"
+    direct_modules[[12]] = "BMLephoto:ten_layer_canopy_integrator"
   }
   weather = weather[10,]
 

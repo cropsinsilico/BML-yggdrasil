@@ -1,3 +1,7 @@
+include:
+  # - ./biocro.yml
+  - ./ephoto.yml
+  
 models:
   - name: BioCro
     language: R
@@ -5,8 +9,9 @@ models:
     function: BioCroWrapper
     dependencies:
       - package: BioCro
+    client_of: ephotosynthesis
     env:
-      WITH_EPHOTO: C
+      WITH_EPHOTO: YGG
     inputs:
       - name: input
         datatype:

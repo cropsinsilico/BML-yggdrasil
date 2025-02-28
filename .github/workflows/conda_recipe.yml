@@ -85,6 +85,17 @@ jobs:
           conda list
 
       ###################################
+      # Build & Install BMLephoto
+      ###################################
+      - name: Build BMLephoto conda recipe
+        run: |
+          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-bmlephoto
+      - name: Install BMLephoto from local conda recipe
+        run: |
+          conda install -c ./local_channel r-bmlephoto
+          conda list
+
+      ###################################
       # Test
       ###################################
       - name: Check installed packages
@@ -94,6 +105,9 @@ jobs:
       - name: Test isolated BioCro
         run: |
           yggrun yamls/biocro.yml
-      - name: Test BioCro-ePhotosynthesis integration
+      - name: Test BioCro w/ BMLephoto integration
         run: |
           yggrun yamls/biocro_ephoto.yml
+      - name: Test BioCro-ePhotosynthesis integration w/ yggdrasilBML
+        run: |
+          yggrun yamls/biocro_ephoto_ygg.yml

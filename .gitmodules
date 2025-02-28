@@ -13,3 +13,6 @@
 [submodule "models/OpenSimRoot"]
 	path = models/OpenSimRoot
 	url = https://gitlab.com/langmm/OpenSimRoot
+[submodule "models/BML-ePhotosynthesis"]
+	path = models/BML-ePhotosynthesis
+	url = https://github.com/langmm/BML-ePhotosynthesis.git

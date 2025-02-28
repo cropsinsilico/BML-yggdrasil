@@ -21,4 +21,14 @@ R CMD INSTALL $SCRIPTPATH/.
 # To update the patch, make the desired changes in the ePhotosynthesis_C
 #   submodule run the following:
 #     ./models/patches/make_patches.sh
-bash $SCRIPTPATH/models/patches/apply_patches.sh
+# bash $SCRIPTPATH/models/patches/apply_patches.sh
+# 6. Install ePhotosynthesis
+cd $SCRIPTPATH/models/ePhotosynthesis_C
+mkdir build_for_conda
+cd build_for_conda
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
+make all VERBOSE=1
+make install 
+cd $SCRIPTPATH
+# 7. Install BMLePhoto
+R CMD INSTALL $SCRIPTPATH/models/BML-ePhotosynthesis

@@ -2,7 +2,7 @@
 {% set posix = 'm2-' if win else '' %}
 
 package:
-  name: r-yggdrasilbml
+  name: r-bmlephoto
   version: {{ version|replace("-", "_") }}
 
 source:
@@ -33,28 +33,26 @@ requirements:
   host:
     - r-base >=3.6.0
     - ephotosynthesis
-    - yggdrasil
   run:
     - r-base >=3.6.0
     - ephotosynthesis
     - r-biocro >=3.1.0
-    - yggdrasil
 
 test:
   commands:
-    - $R -e "library('yggdrasilBML')"           # [not win]
-    - "\"%R%\" -e \"library('yggdrasilBML')\""  # [win]
+    - $R -e "library('BMLePhoto')"           # [not win]
+    - "\"%R%\" -e \"library('BMLePhoto')\""  # [win]
 
 about:
-  home: https://github.com/cropsinsilico/BML-yggdrasil
+  home: https://github.com/Matthews-Research-Group/BML-ePhotosynthesis
   license: MIT
   license_family: MIT
   license_file: LICENSE.md
-  summary: yggdrasil enabled BioCro modules
+  summary: ePhotosynthesis BioCro module
   description: |
-    yggdrasilBML contains a set of BioCro modules that call external models using yggdrasil.
-  doc_url: https://github.com/cropsinsilico/BML-yggdrasil
-  dev_url: https://github.com/cropsinsilico/BML-yggdrasil
+    bmlephoto includes a BioCro module that calls the ePhotosynthesis C++ library.
+  doc_url: https://github.com/Matthews-Research-Group/BML-ePhotosynthesis
+  dev_url: https://github.com/Matthews-Research-Group/BML-ePhotosynthesis
 
 extra:
   recipe-maintainers:
