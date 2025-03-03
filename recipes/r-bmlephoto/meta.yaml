@@ -6,7 +6,7 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  path: ../../
+  path: ../../models/BML-ePhotosynthesis/
 
 build:
   number: 0

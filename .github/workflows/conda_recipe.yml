@@ -27,9 +27,9 @@ jobs:
       ###################################
       # CONDA SETUP
       ###################################
-      - name: Set up MSVC Compiler on windows
-        uses: ilammy/msvc-dev-cmd@v1
-        if: matrix.os == 'windows-latest'
+      # - name: Set up MSVC Compiler on windows
+      #   uses: ilammy/msvc-dev-cmd@v1
+      #   if: matrix.os == 'windows-latest'
       - name: Set up miniconda test environment (W/O MPI)
         uses: conda-incubator/setup-miniconda@v3
         with:
@@ -53,6 +53,9 @@ jobs:
       - name: Set conda build flags
         run: |
           echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge --python 3.11" >> "$GITHUB_ENV"
+      - name: Apply patches to repos before building the recipes
+        run: |
+          ./models/patches/apply_patches.sh
 
       ###################################
       # Build & Install BioCro
