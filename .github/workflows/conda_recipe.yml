@@ -22,7 +22,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
-          submodules: true
+          submodules: recursive
 
       ###################################
       # CONDA SETUP
@@ -53,6 +53,10 @@ jobs:
       - name: Set conda build flags
         run: |
           echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge --python 3.11" >> "$GITHUB_ENV"
+      - name: Add configuration file to build flags (WINDOWS)
+        if: matrix.os == 'windows-latest'
+        run: |
+          echo "CONDA_BUILD_FLAGS=${{ env.CONDA_BUILD_FLAGS }} --config-file recipes/conda_build_config_win64.yaml" >> "$GITHUB_ENV"
       - name: Apply patches to repos before building the recipes
         run: |
           ./models/patches/apply_patches.sh
@@ -69,7 +73,7 @@ jobs:
           conda list
       - name: Update conda build flags
         run: |
-          echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge -c ./local_channel" >> "$GITHUB_ENV"
+          echo "CONDA_BUILD_FLAGS=${{ env.CONDA_BUILD_FLAGS }} -c ./local_channel" >> "$GITHUB_ENV"
 
       ###################################
       # Build & Install ePhotosynthesis
