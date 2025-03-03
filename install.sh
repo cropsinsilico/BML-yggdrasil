@@ -15,14 +15,15 @@ Rscript -e "install.packages('BioCro', repos='https://cran.rstudio.com')"
 # 5. Install yggdrasilBML wrapper modules
 R CMD INSTALL $SCRIPTPATH/.
 # yggcc .  # This does not work on ubuntu w/ yggdrasil from conda-forge
+# 6. Apply patches
 # For compat with yggdrasil on main which assumes no scope when
 #   wrapping CMakeLists.txt and linking target to yggdrasil library
 #   via target_include_directories. yggdrasil on param branch fixes this.
 # To update the patch, make the desired changes in the ePhotosynthesis_C
 #   submodule run the following:
 #     ./models/patches/make_patches.sh
-# bash $SCRIPTPATH/models/patches/apply_patches.sh
-# 6. Install ePhotosynthesis
+bash $SCRIPTPATH/models/patches/apply_patches.sh
+# 7. Install ePhotosynthesis
 cd $SCRIPTPATH/models/ePhotosynthesis_C
 mkdir build_for_conda
 cd build_for_conda
@@ -30,5 +31,5 @@ cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
 make all VERBOSE=1
 make install 
 cd $SCRIPTPATH
-# 7. Install BMLePhoto
+# 8. Install BMLePhoto
 R CMD INSTALL $SCRIPTPATH/models/BML-ePhotosynthesis

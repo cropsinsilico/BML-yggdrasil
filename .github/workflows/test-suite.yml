@@ -43,10 +43,6 @@ jobs:
           miniforge-variant: Miniforge3
           miniforge-version: latest
           conda-remove-defaults: true
-      - name: Set USERPROFILE
-        if: matrix.os == 'windows-latest'
-        run: |
-          echo "USERPROFILE=${{ github.workspace }}" >> "$GITHUB_ENV"
       - name: Install specific version of Yggdrasil via conda
         if: matrix.yggdrasil-version != 'latest'
         run: |
