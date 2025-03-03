@@ -56,7 +56,7 @@ jobs:
       ###################################
       - name: Build BioCro conda recipe
         run: |
-          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ recipes/r-biocro/
+          conda-build --no-anaconda-upload --output-folder ./local_channel/ recipes/r-biocro/
       - name: Install BioCro from local conda recipe
         run: |
           conda install -c ./local_channel r-biocro
@@ -67,7 +67,7 @@ jobs:
       ###################################
       - name: Build ePhotosythesis conda recipe
         run: |
-          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ models/ePhotosynthesis_C/recipe/
+          conda-build --no-anaconda-upload --output-folder ./local_channel/ models/ePhotosynthesis_C/recipe/
       - name: Install BioCro from local conda recipe
         run: |
           conda install -c ./local_channel ePhotosynthesis
@@ -78,7 +78,7 @@ jobs:
       ###################################
       - name: Build yggdrasilBML conda recipe
         run: |
-          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-yggdrasilbml
+          conda-build --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-yggdrasilbml
       - name: Install yggdrasilBML from local conda recipe
         run: |
           conda install -c ./local_channel r-yggdrasilbml
@@ -89,7 +89,7 @@ jobs:
       ###################################
       - name: Build BMLephoto conda recipe
         run: |
-          conda-build --use-local --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-bmlephoto
+          conda-build --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-bmlephoto
       - name: Install BMLephoto from local conda recipe
         run: |
           conda install -c ./local_channel r-bmlephoto
