@@ -50,24 +50,30 @@ jobs:
         run: |
           conda info
           conda list
+      - name: Set conda build flags
+        run: |
+          echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge --python 3.11" >> "$GITHUB_ENV"
 
       ###################################
       # Build & Install BioCro
       ###################################
       - name: Build BioCro conda recipe
         run: |
-          conda-build --no-anaconda-upload --output-folder ./local_channel/ recipes/r-biocro/
+          conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-biocro/
       - name: Install BioCro from local conda recipe
         run: |
           conda install -c ./local_channel r-biocro
           conda list
+      - name: Update conda build flags
+        run: |
+          echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge -c ./local_channel" >> "$GITHUB_ENV"
 
       ###################################
       # Build & Install ePhotosynthesis
       ###################################
       - name: Build ePhotosythesis conda recipe
         run: |
-          conda-build --no-anaconda-upload --output-folder ./local_channel/ models/ePhotosynthesis_C/recipe/
+          conda-build ${{ env.CONDA_BUILD_FLAGS }} models/ePhotosynthesis_C/recipe/
       - name: Install BioCro from local conda recipe
         run: |
           conda install -c ./local_channel ePhotosynthesis
@@ -78,7 +84,7 @@ jobs:
       ###################################
       - name: Build yggdrasilBML conda recipe
         run: |
-          conda-build --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-yggdrasilbml
+          conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-yggdrasilbml
       - name: Install yggdrasilBML from local conda recipe
         run: |
           conda install -c ./local_channel r-yggdrasilbml
@@ -89,7 +95,7 @@ jobs:
       ###################################
       - name: Build BMLephoto conda recipe
         run: |
-          conda-build --no-anaconda-upload --output-folder ./local_channel/ -c ./local_channel recipes/r-bmlephoto
+          conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-bmlephoto
       - name: Install BMLephoto from local conda recipe
         run: |
           conda install -c ./local_channel r-bmlephoto
