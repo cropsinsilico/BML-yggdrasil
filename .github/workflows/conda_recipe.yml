@@ -50,6 +50,8 @@ jobs:
         run: |
           conda info
           conda list
+          yggconfig
+          yggcompile c cpp
 
       ###################################
       # Build & Install BioCro
