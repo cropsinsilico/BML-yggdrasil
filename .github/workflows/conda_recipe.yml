@@ -100,7 +100,7 @@ jobs:
       ###################################
       - name: Check installed packages
         run: |
-          mamba list
+          conda list
           ygginfo --verbose
       - name: Test isolated BioCro
         run: |
