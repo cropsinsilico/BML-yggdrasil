@@ -78,7 +78,7 @@ jobs:
       ###################################
       - name: Install yggdrasilBML, BMLephoto, & BioCro
         run: |
-          ./install.sh
+          bash install.sh
       - name: Install specific version of BioCro via CRAN
         if: matrix.biocro-version != 'latest'
         run: |

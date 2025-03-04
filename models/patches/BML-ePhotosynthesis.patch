@@ -1,8 +1,8 @@
 diff --git a/src/Makevars b/src/Makevars
-index 9a39cbe..02183fc 100644
+index 9a39cbe..a8ac421 100644
 --- a/src/Makevars
 +++ b/src/Makevars
-@@ -1,17 +1,12 @@
+@@ -1,17 +1,15 @@
 -# Get the current directory path of the Makevars
 -CURRENT_DIR := $(CURDIR)
 -PARENT_DIR  := $(shell dirname $(CURRENT_DIR))
@@ -17,6 +17,9 @@ index 9a39cbe..02183fc 100644
  
 -#YH: Both PKG_LIBS and the system environment need the ephoto's library path 
 -PKG_LIBS += -L$(ephoto_path)/build -lEPhotosynthesis
++#ML: Newest version of boost requires C++14
++CXX_STD = CXX14
++
 +#ML: Assumes ePhotosynthesis is installed in the current conda env
 +conda_path := ${CONDA_PREFIX}
 +ifdef conda_path

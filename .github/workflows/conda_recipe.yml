@@ -41,6 +41,7 @@ jobs:
           miniforge-variant: Miniforge3
           miniforge-version: latest
           conda-remove-defaults: true
+          python-version: "3.11"
       - name: Install conda-build
         run: |
           conda info
@@ -56,7 +57,7 @@ jobs:
       - name: Add configuration file to build flags (WINDOWS)
         if: matrix.os == 'windows-latest'
         run: |
-          echo "CONDA_BUILD_FLAGS=${{ env.CONDA_BUILD_FLAGS }} --config-file recipes/conda_build_config_win64.yaml" >> "$GITHUB_ENV"
+          echo "CONDA_BUILD_FLAGS=${{ env.CONDA_BUILD_FLAGS }} --variant-config-files recipes/conda_build_config_win64.yaml" >> "$GITHUB_ENV"
       - name: Apply patches to repos before building the recipes
         run: |
           ./models/patches/apply_patches.sh
