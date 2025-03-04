@@ -52,14 +52,32 @@ index a7747e9..63b5733 100644
  SOURCES = $(wildcard *.cpp module_library/*.cpp framework/*.cpp framework/ode_solver_library/*.cpp framework/utils/*.cpp)
  OBJECTS = $(SOURCES:.cpp=.o)
 diff --git a/src/module_library/c3photo.cpp b/src/module_library/c3photo.cpp
-index b2b6214..6b20f37 100644
+index b2b6214..f1b3114 100644
 --- a/src/module_library/c3photo.cpp
 +++ b/src/module_library/c3photo.cpp
-@@ -23,7 +23,7 @@
- #include "drivers/drivers.hpp"
- #include "Variables.hpp"
- 
+@@ -14,16 +14,16 @@
+ #include <iterator>
+ #include <boost/algorithm/string_regex.hpp>
+ #include <boost/regex.hpp>
+-#include "cxxopts.hpp"
+-#include "globals.hpp"
+-#include "modules/trDynaPS.hpp"
+-#include "modules/CM.hpp"
+-#include "modules/EPS.hpp"
+-#include "modules/PR.hpp"
+-#include "drivers/drivers.hpp"
+-#include "Variables.hpp"
+-
 -const boost::regex token("\\s+");
++#include <ePhotosynthesis/cxxopts.hpp>
++#include <ePhotosynthesis/globals.hpp>
++#include <ePhotosynthesis/modules/trDynaPS.hpp>
++#include <ePhotosynthesis/modules/CM.hpp>
++#include <ePhotosynthesis/modules/EPS.hpp>
++#include <ePhotosynthesis/modules/PR.hpp>
++#include <ePhotosynthesis/drivers/drivers.hpp>
++#include <ePhotosynthesis/Variables.hpp>
++
 +// const boost::regex token("\\s+");
  using namespace ePhotosynthesis;
  using namespace ePhotosynthesis::drivers;

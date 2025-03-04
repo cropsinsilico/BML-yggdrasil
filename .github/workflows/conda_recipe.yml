@@ -27,9 +27,9 @@ jobs:
       ###################################
       # CONDA SETUP
       ###################################
-      # - name: Set up MSVC Compiler on windows
-      #   uses: ilammy/msvc-dev-cmd@v1
-      #   if: matrix.os == 'windows-latest'
+      - name: Set up MSVC Compiler on windows
+        uses: ilammy/msvc-dev-cmd@v1
+        if: matrix.os == 'windows-latest'
       - name: Set up miniconda test environment (W/O MPI)
         uses: conda-incubator/setup-miniconda@v3
         with:
