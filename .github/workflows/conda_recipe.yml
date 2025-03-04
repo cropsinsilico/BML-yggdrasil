@@ -41,7 +41,7 @@ jobs:
           miniforge-variant: Miniforge3
           miniforge-version: latest
           conda-remove-defaults: true
-          python-version: "3.11"
+          # python-version: "3.11"
       - name: Install conda-build
         run: |
           conda info
@@ -51,6 +51,7 @@ jobs:
         run: |
           conda info
           conda list
+          conda create -n test python=3.11
       - name: Set conda build flags
         run: |
           echo "CONDA_BUILD_FLAGS=--no-anaconda-upload --output-folder ./local_channel/ -c conda-forge --python 3.11" >> "$GITHUB_ENV"
@@ -70,8 +71,8 @@ jobs:
           conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-biocro/
       - name: Install BioCro from local conda recipe
         run: |
-          conda install -c ./local_channel r-biocro
-          conda list
+          conda install -n test -c ./local_channel r-biocro
+          conda list -n test
       - name: Update conda build flags
         run: |
           echo "CONDA_BUILD_FLAGS=${{ env.CONDA_BUILD_FLAGS }} -c ./local_channel" >> "$GITHUB_ENV"
@@ -84,8 +85,8 @@ jobs:
           conda-build ${{ env.CONDA_BUILD_FLAGS }} models/ePhotosynthesis_C/recipe/
       - name: Install BioCro from local conda recipe
         run: |
-          conda install -c ./local_channel ePhotosynthesis
-          conda list
+          conda install -n test -c ./local_channel ePhotosynthesis
+          conda list -n test
 
       ###################################
       # Build & Install yggdrasilBML
@@ -95,8 +96,8 @@ jobs:
           conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-yggdrasilbml
       - name: Install yggdrasilBML from local conda recipe
         run: |
-          conda install -c ./local_channel r-yggdrasilbml
-          conda list
+          conda install -n test -c ./local_channel r-yggdrasilbml
+          conda list -n test
 
       ###################################
       # Build & Install BMLephoto
@@ -106,22 +107,22 @@ jobs:
           conda-build ${{ env.CONDA_BUILD_FLAGS }} recipes/r-bmlephoto
       - name: Install BMLephoto from local conda recipe
         run: |
-          conda install -c ./local_channel r-bmlephoto
-          conda list
+          conda install -n test -c ./local_channel r-bmlephoto
+          conda list -n test
 
       ###################################
       # Test
       ###################################
       - name: Check installed packages
         run: |
-          conda list
-          ygginfo --verbose
+          conda list -n test
+          conda run -n test ygginfo --verbose
       - name: Test isolated BioCro
         run: |
-          yggrun yamls/biocro.yml
+          conda run -n test yggrun yamls/biocro.yml
       - name: Test BioCro w/ BMLephoto integration
         run: |
-          yggrun yamls/biocro_ephoto.yml
+          conda run -n test yggrun yamls/biocro_ephoto.yml
       - name: Test BioCro-ePhotosynthesis integration w/ yggdrasilBML
         run: |
-          yggrun yamls/biocro_ephoto_ygg.yml
+          conda run -n test yggrun yamls/biocro_ephoto_ygg.yml

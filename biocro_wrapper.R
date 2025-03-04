@@ -2,7 +2,7 @@ library(BioCro)
 with_ephoto = Sys.getenv("WITH_EPHOTO")
 if (with_ephoto == "YGG") {
   library(yggdrasilBML)
-} elseif (with_ephoto == "C") {
+} else if (with_ephoto == "C") {
   library(BMLephoto)
 }
 
@@ -37,7 +37,7 @@ BioCroWrapper <- function(param) {
     direct_modules[[10]] = "yggdrasilBML:ten_layer_canopy_properties"
     direct_modules[[11]] = "yggdrasilBML:ten_layer_c3_canopy"
     direct_modules[[12]] = "yggdrasilBML:ten_layer_canopy_integrator"
-  } elseif (with_ephoto == "C") {
+  } else if (with_ephoto == "C") {
     # Replace BioCro ten layer canopy modules
     direct_modules[[10]] = "BMLephoto:ten_layer_canopy_properties"
     direct_modules[[11]] = "BMLephoto:ten_layer_c3_canopy"
