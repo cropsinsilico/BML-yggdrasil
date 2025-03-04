@@ -25,10 +25,12 @@ R CMD INSTALL $SCRIPTPATH/.
 bash $SCRIPTPATH/models/patches/apply_patches.sh
 # 7. Install ePhotosynthesis
 cd $SCRIPTPATH/models/ePhotosynthesis_C
-mkdir build_for_conda
+if [ ! -d build_for_conda ]; then
+    mkdir build_for_conda
+fi
 cd build_for_conda
-cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$CONDA_PREFIX ..
-make all VERBOSE=1
+cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=$CONDA_PREFIX -DWITH_YGGDRASIL=ON ..
+make all VERBOSE=1   # -j 8
 make install 
 cd $SCRIPTPATH
 # 8. Install BMLePhoto

@@ -1,8 +1,8 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 0dd0de3..561357d 100644
+index 3360dbf..5631759 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -285,7 +285,7 @@ if(WIN32)
+@@ -296,7 +296,7 @@ if(WITH_YGGDRASIL)
  endif()
  
  target_link_libraries(

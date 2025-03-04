@@ -83,7 +83,7 @@ jobs:
       - name: Build ePhotosythesis conda recipe
         run: |
           conda-build ${{ env.CONDA_BUILD_FLAGS }} models/ePhotosynthesis_C/recipe/
-      - name: Install BioCro from local conda recipe
+      - name: Install ePhotosynthesis from local conda recipe
         run: |
           conda install -n test -c ./local_channel ePhotosynthesis
           conda list -n test
