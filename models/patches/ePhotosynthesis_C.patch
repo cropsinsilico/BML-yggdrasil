@@ -1,13 +1,20 @@
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 3360dbf..5631759 100644
+index 529f5db..cb0c4b8 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -296,7 +296,7 @@ if(WITH_YGGDRASIL)
+@@ -295,13 +295,13 @@ if(WITH_YGGDRASIL)
+     # endif()
+     create_yggdrasil_interface_library(CXX ${YGG_LINK_ARGS})
+     target_link_libraries(
+-      EPhotosynthesis PRIVATE YggInterface::CXX
++      EPhotosynthesis YggInterface::CXX
+     )
+     # link_yggdrasil(EPhotosynthesis PRIVATE CXX ${YGG_LINK_ARGS})
  endif()
  
  target_link_libraries(
--    EPhotosynthesis PUBLIC ${Boost_LIBRARIES} ${SUNDIALS_LIBRARIES}
-+    EPhotosynthesis ${Boost_LIBRARIES} ${SUNDIALS_LIBRARIES}
+-    EPhotosynthesis PUBLIC ${SUNDIALS_LIBRARIES}
++    EPhotosynthesis ${SUNDIALS_LIBRARIES}
  )
  target_include_directories(
-     EPhotosynthesis PUBLIC ${Boost_INCLUDE_DIRS} ${SUNDIALS_INCLUDE_DIRS}
+     EPhotosynthesis PUBLIC ${SUNDIALS_INCLUDE_DIRS}

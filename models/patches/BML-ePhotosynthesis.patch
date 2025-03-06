@@ -1,8 +1,8 @@
 diff --git a/src/Makevars b/src/Makevars
-index 9a39cbe..a8ac421 100644
+index 9a39cbe..49e5b67 100644
 --- a/src/Makevars
 +++ b/src/Makevars
-@@ -1,17 +1,15 @@
+@@ -1,17 +1,21 @@
 -# Get the current directory path of the Makevars
 -CURRENT_DIR := $(CURDIR)
 -PARENT_DIR  := $(shell dirname $(CURRENT_DIR))
@@ -21,7 +21,13 @@ index 9a39cbe..a8ac421 100644
 +CXX_STD = CXX14
 +
 +#ML: Assumes ePhotosynthesis is installed in the current conda env
++
++conda_build := ${CONDA_BUILD}
++ifdef conda_build
++conda_path := ${PREFIX}
++else
 +conda_path := ${CONDA_PREFIX}
++endif
 +ifdef conda_path
 +PKG_CPPFLAGS += -I$(conda_path)/include -I$(conda_path)/include/ePhotosynthesis
 +PKG_LIBS += -L$(conda_path)/lib
@@ -31,10 +37,10 @@ index 9a39cbe..a8ac421 100644
  SOURCES = $(wildcard *.cpp module_library/*.cpp framework/*.cpp framework/ode_solver_library/*.cpp framework/utils/*.cpp)
  OBJECTS = $(SOURCES:.cpp=.o)
 diff --git a/src/Makevars.win b/src/Makevars.win
-index a7747e9..63b5733 100644
+index a7747e9..454296f 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
-@@ -8,7 +8,15 @@
+@@ -8,7 +8,20 @@
  # If the version of make included with Rtools is updated to version 3.80 or later,
  # then the file will likely be unnecessary.
  
@@ -42,7 +48,12 @@ index a7747e9..63b5733 100644
 +PKG_CPPFLAGS+=-I../inc -DR_NO_REMAP -O3 -g -Wall -ggdb3
 +
 +#ML: Assumes ePhotosynthesis is installed in the current conda env
++conda_build := ${CONDA_BUILD}
++ifdef conda_build
++conda_path := ${PREFIX}
++else
 +conda_path := ${CONDA_PREFIX}
++endif
 +ifdef conda_path
 +PKG_CPPFLAGS += -I$(conda_path)/include -I$(conda_path)/include/ePhotosynthesis
 +PKG_LIBS += -L$(conda_path)/lib
