@@ -61,7 +61,7 @@ BioCroWrapper <- function(param, init_param = NULL, weather_param = NULL) {
   parameters$water_stress_approach = get_with_default(
     param, 'water_stress_approach', 1
   )
-  parameters$Catm = get_with_default(param, 'CO2', 400)
+  parameters$Catm = get_with_default(param, 'Catm', 400)
   if (is.null(init_param)) {
     init_param = get_with_default(param, 'init')
   }
@@ -100,7 +100,7 @@ BioCroWrapper <- function(param, init_param = NULL, weather_param = NULL) {
     sowdate = get_with_default(param, 'doy_sow', 158)
     harvestdate = get_with_default(param, 'doy_harvest', 275)
   }
-  if ('doy' %in% names(param)) {
+  if ("doy" %in% names(param)) {
     if (is.null(init_param)) {
       start_day = sowdate
     } else {
@@ -111,7 +111,7 @@ BioCroWrapper <- function(param, init_param = NULL, weather_param = NULL) {
     start_day = get_with_default(param, 'doy_start', sowdate)
     end_day = get_with_default(param, 'doy_end', harvestdate - 1)
   }
-  if ('hour' %in% names(param)) {
+  if ("hour" %in% names(param)) {
     start_hour = min(param[['hour']])
     end_hour = max(param[['hour']])
   } else {
@@ -180,7 +180,8 @@ BioCroWrapper <- function(param, init_param = NULL, weather_param = NULL) {
       param, 'time_zone_offset', -6
     )
   }
-  print(paste("sow,start and end days are",sowdate,start_day,end_day))
+  print(paste("sow, harvest, start and end days are",
+        sowdate, harvestdate, start_day, end_day))
 
   # subset of the weather for the run period ONLY!
   weather_sub <- weather[beg_ind:end_ind,]  
