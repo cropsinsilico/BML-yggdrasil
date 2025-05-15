@@ -1,2 +1,3 @@
 crop	soybean
 year	2002
+doy     152
